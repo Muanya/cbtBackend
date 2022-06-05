@@ -44,7 +44,7 @@ class ChoiceView(APIView):
             x = int(req.query_params['id'])
         except MultiValueDictKeyError:
             x = 1  # default value when no values is given
-        except ValueError as e:
+        except ValueError:
             return Response({'msg': 'Invalid value for key'}, status=status.HTTP_400_BAD_REQUEST)
         choices = Choice.objects.filter(question=x)
         res = []
